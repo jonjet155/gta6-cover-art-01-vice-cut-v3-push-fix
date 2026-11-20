@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VICE CUT — Cover Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <h1>VICE CUT</h1>
+    <p>Cover Studio — build your own magazine cover from your photos</p>
+  </div>
+  <div class="top-actions">
+    <div id="sizeSeg" class="seg" role="group" aria-label="Cover size"></div>
+    <button type="button" data-export="square">Export Square</button>
+    <button type="button" data-export="portrait">Export Portrait</button>
+    <button type="button" data-export="wide" class="primary">Export Wide</button>
+  </div>
+</header>
+
+<main class="studio">
+  <section class="preview-col">
+    <canvas id="cover" width="1920" height="1080" aria-label="Cover preview"></canvas>
+    <p id="hint" class="hint"></p>
+    <p class="how">How it works: click a panel on the cover, then click a photo in the tray to place it. Drag a panel to pan, scroll to zoom, double-click to re-centre on that spot. Captions and role tags are edited in place below.</p>
+  </section>
+
+  <aside class="sidebar">
+    <section class="card">
+      <h2>1 · Layout</h2>
+      <div id="layoutRow" class="btn-row"></div>
+    </section>
+
+    <section class="card">
+      <h2>2 · Grade</h2>
+      <div id="gradeRow" class="btn-row"></div>
+      <label class="slider-row">Intensity <input type="range" id="gradeSlider" min="0" max="100" value="70"> <span id="gradeValue">70%</span></label>
+    </section>
+
+    <section class="card">
+      <h2>3 · Captions</h2>
+      <div id="styleRow" class="btn-row"></div>
+      <label class="check"><input type="checkbox" id="roleToggle" checked> Show role tags on every panel</label>
+      <label class="check"><input type="checkbox" id="starsToggle" checked> Show 5 gold stars in the top strip</label>
+      <label class="check"><input type="checkbox" id="badgeToggle" checked> Show gold “ORIGINAL COVER ART” seal</label>
+    </section>
+
+    <section class="card">
+      <h2>4 · Selected panel</h2>
+      <div id="panelEditor">
+        <p id="panelName" class="panel-name">Panel 1 — The Driver</p>
+        <label>Role tag <input type="text" id="roleInput" maxlength="24" autocomplete="off"></label>
+        <label>Caption <input type="text" id="captionInput" maxlength="64" autocomplete="off"></label>
+        <label class="slider-row">Zoom <input type="range" id="zoomSlider" min="100" max="300" value="100"> <span id="zoomValue">100%</span></label>
+        <div class="btn-row">
+          <button type="button" id="resetCropBtn">Reset crop</button>
+          <button type="button" id="clearPanelBtn">Clear panel</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>5 · Photos</h2>
+      <div class="btn-row">
+        <button type="button" id="uploadBtn" class="primary">Upload your photos</button>
+        <input type="file" id="uploadInput" accept="image/*" multiple hidden>
+        <button type="button" id="fillEmptyBtn">Fill empty panels</button>
+        <button type="button" id="fillOneBtn">One photo, all panels</button>
+      </div>
+      <div id="tray" class="tray"></div>
+      <p class="muted">Your photos stay on your device — they are never uploaded anywhere. Tap a tray photo, then a panel, to place it.</p>
+    </section>
+
+    <section class="card">
+      <h2>6 · Words</h2>
+      <label>Title <input type="text" id="titleInput" maxlength="18" autocomplete="off"></label>
+      <label>Tagline <input type="text" id="taglineInput" maxlength="40" autocomplete="off"></label>
+      <label>Press quote <input type="text" id="quoteInput" maxlength="60" autocomplete="off"></label>
+      <label>Gazette <input type="text" id="gazetteInput" maxlength="32" autocomplete="off"></label>
+      <label>Volume <input type="text" id="volInput" maxlength="12" autocomplete="off"></label>
+      <label>Ribbon <input type="text" id="ribbonInput" maxlength="48" autocomplete="off"></label>
+      <label>Billing line 1 <input type="text" id="billing1Input" maxlength="60" autocomplete="off"></label>
+      <label>Billing line 2 <input type="text" id="billing2Input" maxlength="60" autocomplete="off"></label>
+    </section>
+  </aside>
+</main>
+
+<script type="module" src="src/shots.js"></script>
+</body>
+</html>
